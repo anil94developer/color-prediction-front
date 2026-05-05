@@ -212,7 +212,8 @@ export default function Game() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const socket = io({
+    const socketBase = (import.meta.env.VITE_SOCKET_URL || "").trim() || undefined;
+    const socket = io(socketBase, {
       path: "/socket.io",
       transports: ["websocket"],
       auth: { token },
