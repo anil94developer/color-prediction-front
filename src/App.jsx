@@ -4,8 +4,6 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Home from "./pages/Home.jsx";
 import Game from "./pages/Game.jsx";
-import Ludo from "./pages/Ludo.jsx";
-import Aviator from "./pages/Aviator.jsx";
 import Wallet from "./pages/Wallet.jsx";
 import Withdraw from "./pages/Withdraw.jsx";
 import Profile from "./pages/Profile.jsx";
@@ -43,7 +41,7 @@ function AppRoutes() {
         path="/game/ludo"
         element={
           <Private>
-            <Ludo />
+            <Navigate to="/game/wingo" replace />
           </Private>
         }
       />
@@ -51,7 +49,7 @@ function AppRoutes() {
         path="/game/aviator"
         element={
           <Private>
-            <Aviator />
+            <Navigate to="/game/wingo" replace />
           </Private>
         }
       />
