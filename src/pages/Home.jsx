@@ -13,20 +13,6 @@ const GAMES = [
     to: "/game/wingo",
     className: "home-jai__tile--wingo",
   },
-  {
-    key: "aviator",
-    name: "Aviator",
-    desc: "Cash out before the fly-away",
-    to: "/game/aviator",
-    className: "home-jai__tile--aviator",
-  },
-  {
-    key: "ludo",
-    name: "Ludo",
-    desc: "Classic board fun",
-    to: "/game/ludo",
-    className: "home-jai__tile--ludo",
-  },
 ];
 
 export default function Home() {

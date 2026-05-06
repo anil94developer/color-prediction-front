@@ -5,7 +5,7 @@ const ACT_ICONS = [
   { label: "Activity Award", emoji: "🥇", to: "/activity", hint: "Activity hub" },
   { label: "Invitation bonus", emoji: "👥", to: "/profile", hint: "Referrals on profile" },
   { label: "Betting rebate", emoji: "💰", to: "/wallet", hint: "Wallet & history" },
-  { label: "Super Jackpot", emoji: "🏆", to: "/game/aviator", hint: "Aviator" },
+  { label: "Super Jackpot", emoji: "🏆", to: "/game/wingo", hint: "WinGo" },
   { label: "First gift", emoji: "🎁", to: "/wallet", hint: "Deposit & rewards" },
 ];
 
@@ -16,20 +16,6 @@ const GAMES = [
     tagline: "Color & number · live rounds",
     to: "/game/wingo",
     className: "act-jai__game-banner--wingo",
-  },
-  {
-    slug: "aviator",
-    title: "Aviator",
-    tagline: "Cash out before the plane flies away",
-    to: "/game/aviator",
-    className: "act-jai__game-banner--aviator",
-  },
-  {
-    slug: "ludo",
-    title: "Ludo",
-    tagline: "Classic board fun",
-    to: "/game/ludo",
-    className: "act-jai__game-banner--ludo",
   },
 ];
 
