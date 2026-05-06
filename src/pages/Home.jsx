@@ -109,6 +109,54 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="home-jai__section home-jai__section--feed" aria-labelledby="home-winning-heading">
+        <div className="home-jai__section-head">
+          <h2 id="home-winning-heading" className="home-jai__section-title">
+            Winning information
+          </h2>
+        </div>
+        <div className="home-jai__winner-row" role="list">
+          {[1, 2, 3, 4, 5].map((idx) => (
+            <article key={idx} className="home-jai__winner-card" role="listitem">
+              <span className="home-jai__winner-game">Win Go</span>
+              <span className="home-jai__winner-user">Mem***{["BFT", "QJN", "FHW", "FCE", "FNI"][idx - 1]}</span>
+              <span className="home-jai__winner-amt">Receive ₹19,600.00</span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-jai__section home-jai__section--chart" aria-labelledby="home-earnings-heading">
+        <div className="home-jai__section-head">
+          <h2 id="home-earnings-heading" className="home-jai__section-title">
+            Today's earnings chart
+          </h2>
+        </div>
+        <div className="home-jai__earnings">
+          <article className="home-jai__earn">
+            <span className="home-jai__earn-avatar" aria-hidden>
+              👩
+            </span>
+            <span className="home-jai__earn-name">Mem***HK1</span>
+            <span className="home-jai__earn-amt">₹7,840.00</span>
+          </article>
+          <article className="home-jai__earn home-jai__earn--main">
+            <span className="home-jai__earn-avatar" aria-hidden>
+              👩
+            </span>
+            <span className="home-jai__earn-name">Mem***FCX</span>
+            <span className="home-jai__earn-amt">₹19,600.00</span>
+          </article>
+          <article className="home-jai__earn">
+            <span className="home-jai__earn-avatar" aria-hidden>
+              🧝
+            </span>
+            <span className="home-jai__earn-name">No ***ata</span>
+            <span className="home-jai__earn-amt">₹0.00</span>
+          </article>
+        </div>
+      </section>
+
       <BottomNav />
     </div>
   );

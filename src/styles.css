@@ -1500,6 +1500,100 @@ td {
   color: #fff;
 }
 
+.home-jai__section--feed,
+.home-jai__section--chart {
+  margin-top: 16px;
+}
+
+.home-jai__winner-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.home-jai__winner-card {
+  min-width: 88px;
+  background: linear-gradient(150deg, rgba(139, 92, 246, 0.45), rgba(59, 130, 246, 0.38));
+  border: 1px solid rgba(167, 139, 250, 0.42);
+  border-radius: 12px;
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.home-jai__winner-game {
+  font-size: 0.62rem;
+  color: rgba(224, 231, 255, 0.95);
+  font-weight: 700;
+}
+
+.home-jai__winner-user,
+.home-jai__winner-amt {
+  font-size: 0.6rem;
+  line-height: 1.28;
+  color: #fff;
+  font-weight: 700;
+}
+
+.home-jai__winner-amt {
+  color: #fef3c7;
+}
+
+.home-jai__earnings {
+  border-radius: 16px;
+  border: 1px solid rgba(129, 140, 248, 0.32);
+  padding: 12px 10px;
+  background: linear-gradient(110deg, rgba(244, 114, 182, 0.28), rgba(96, 165, 250, 0.32));
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 8px;
+  align-items: end;
+}
+
+.home-jai__earn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.home-jai__earn-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  font-size: 1.35rem;
+}
+
+.home-jai__earn--main .home-jai__earn-avatar {
+  width: 58px;
+  height: 58px;
+}
+
+.home-jai__earn-name {
+  font-size: 0.68rem;
+  color: rgba(241, 245, 249, 0.95);
+  font-weight: 800;
+}
+
+.home-jai__earn-amt {
+  font-size: 0.7rem;
+  background: rgba(30, 41, 59, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 4px 8px;
+  color: #fef08a;
+  font-weight: 900;
+}
+
 .home-jai__tile--wingo {
   background: linear-gradient(135deg, #ea580c 0%, #f97316 45%, #fb923c 100%);
 }
