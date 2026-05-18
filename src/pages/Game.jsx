@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import api from "../api/client";
 import { useAuth } from "../auth/AuthContext.jsx";
-import { ballClassForNumber } from "../utils/balls.js";
 import { betSheetThemeClass } from "../utils/betSheetTheme.js";
 import BottomNav from "../components/BottomNav.jsx";
+import NumberImage from "../components/NumberImage.jsx";
 
 const MODES = [
   { key: "WinGo_30S", label: "WinGo 30sec" },
@@ -416,8 +416,8 @@ export default function Game() {
             </button>
             <div className="result-strip">
               {recentBalls.map((h) => (
-                <div key={h.periodId} className={`result-ball ${ballClassForNumber(h.number)}`}>
-                  {h.number}
+                <div key={h.periodId} className="result-ball result-ball--img">
+                  <NumberImage value={h.number} />
                 </div>
               ))}
             </div>
@@ -454,10 +454,10 @@ export default function Game() {
             <button
               key={n}
               type="button"
-              className={`num-ball ${ballClassForNumber(n)}`}
+              className="num-ball num-ball--img"
               onClick={() => openBetSheet("number", n)}
             >
-              {n}
+              <NumberImage value={n} />
             </button>
           ))}
         </div>
@@ -524,14 +524,15 @@ export default function Game() {
                 {historyItems.map((h) => (
                   <tr key={h.periodId}>
                     <td>{h.periodId}</td>
-                    <td style={{ fontWeight: 800 }}>{h.number}</td>
+                    <td>
+                      <span className="result-ball result-ball--img result-ball--sm">
+                        <NumberImage value={h.number} />
+                      </span>
+                    </td>
                     <td>{h.bigSmall}</td>
                     <td>
-                      <span
-                        className={`result-ball ${ballClassForNumber(h.number)}`}
-                        style={{ width: 26, height: 26, fontSize: "0.7rem" }}
-                      >
-                        {h.number}
+                      <span className="result-ball result-ball--img result-ball--sm">
+                        <NumberImage value={h.number} />
                       </span>
                     </td>
                   </tr>
@@ -574,8 +575,8 @@ export default function Game() {
           </p>
           <div className="result-strip" style={{ flexWrap: "wrap", marginTop: 12 }}>
             {chartPreview.map((h) => (
-              <div key={h.periodId} className={`result-ball ${ballClassForNumber(h.number)}`}>
-                {h.number}
+              <div key={h.periodId} className="result-ball result-ball--img">
+                <NumberImage value={h.number} />
               </div>
             ))}
           </div>
@@ -625,11 +626,8 @@ export default function Game() {
             <div className="bet-sheet__gradient-head">{modeLabel}</div>
             <div className="bet-sheet__pick">
               {sheetBetType === "number" && sheetNumber !== null && sheetNumber !== undefined ? (
-                <span
-                  className={`bet-sheet__pick-ball result-ball ${ballClassForNumber(sheetNumber)}`}
-                  aria-hidden
-                >
-                  {sheetNumber}
+                <span className="bet-sheet__pick-ball result-ball result-ball--img" aria-hidden>
+                  <NumberImage value={sheetNumber} />
                 </span>
               ) : null}
               {sheetBetType === "color_green" ? (

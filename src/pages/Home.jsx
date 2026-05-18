@@ -1,26 +1,27 @@
 import { Link } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "../auth/AuthContext.jsx";
+import { GAME_ICONS, RECOMMEND_ICONS } from "../assets/gameCatalog.js";
 import BottomNav from "../components/BottomNav.jsx";
 
 const MARQUEE = "Our customer service will never send any links to members—if you receive a link from anyone, do not trust it.";
 
 const GAME_CARDS = [
-  { key: "wingo", title: "WINGO", sub: "WIN GO", art: "⑦⑧", to: "/game/wingo", active: true, cls: "wingo" },
-  { key: "aviator-red", title: "AVIATOR", sub: "AVIATOR", art: "✈", active: false, cls: "aviator-red" },
-  { key: "cricket", title: "CRICKET", sub: "CRICKET", art: "◔", active: false, cls: "cricket" },
-  { key: "pubg", title: "PUBG MINI", sub: "PUBG MINI", art: "⬢", active: false, cls: "pubg" },
-  { key: "aviator-blue", title: "AVIATOR", sub: "AVIATOR", art: "✈", active: false, cls: "aviator-blue" },
-  { key: "vortex", title: "VORTEX", sub: "VORTEX", art: "◍", active: false, cls: "vortex" },
+  { key: "wingo", title: "WINGO", sub: "WIN GO", icon: "wingo", to: "/game/wingo", active: true, cls: "wingo" },
+  { key: "aviator-red", title: "AVIATOR", sub: "AVIATOR", icon: "aviator", active: false, cls: "aviator-red" },
+  { key: "cricket", title: "CRICKET", sub: "CRICKET", icon: "cricket", active: false, cls: "cricket" },
+  { key: "pubg", title: "PUBG MINI", sub: "PUBG MINI", icon: "pubg", active: false, cls: "pubg" },
+  { key: "aviator-blue", title: "AVIATOR", sub: "AVIATOR", icon: "aviator", active: false, cls: "aviator-blue" },
+  { key: "vortex", title: "VORTEX", sub: "VORTEX", icon: "vortex", active: false, cls: "vortex" },
 ];
 
 const RECOMMENDED_CARDS = [
-  { key: "money-coming", title: "MONEY COMING", art: "💵", cls: "money-coming" },
-  { key: "fortune-gems-2", title: "FORTUNE GEMS 2", art: "🎅", cls: "fortune-gems-2" },
-  { key: "fortune-gems", title: "FORTUNE GEMS", art: "🦉", cls: "fortune-gems" },
-  { key: "hot-spin", title: "HOT SPIN", art: "🌀", cls: "hot-spin" },
-  { key: "crazy-777", title: "CRAZY 777", art: "7", cls: "crazy-777" },
-  { key: "wildfire-wins", title: "WILDFIRE WINS", art: "🔥", cls: "wildfire-wins" },
+  { key: "money-coming", title: "MONEY COMING", cls: "money-coming" },
+  { key: "fortune-gems-2", title: "FORTUNE GEMS 2", cls: "fortune-gems-2" },
+  { key: "fortune-gems", title: "FORTUNE GEMS", cls: "fortune-gems" },
+  { key: "hot-spin", title: "HOT SPIN", cls: "hot-spin" },
+  { key: "crazy-777", title: "CRAZY 777", cls: "crazy-777" },
+  { key: "wildfire-wins", title: "WILDFIRE WINS", cls: "wildfire-wins" },
 ];
 
 const EARNERS_TOP3 = [
@@ -159,20 +160,22 @@ export default function Home() {
         <div className="home-match__game-grid">
           {GAME_CARDS.map((g) =>
             g.active ? (
-              <Link key={g.key} to={g.to} className={`home-match__game-card home-match__game-card--active home-match__game-card--${g.cls}`}>
-                <span className="home-match__game-art" aria-hidden>
-                  {g.art}
+              <Link key={g.key} to={g.to}  >
+                <span  aria-hidden>
+                  {GAME_ICONS[g.icon] ? (
+                    <img src={GAME_ICONS[g.icon]} alt="" className="home-match__game-img" />
+                  ) : null}
                 </span>
-                <span className="home-match__game-title">{g.title}</span>
-                <span className="home-match__game-sub">{g.sub}</span>
+                 
               </Link>
             ) : (
-              <article key={g.key} className={`home-match__game-card home-match__game-card--${g.cls}`} aria-disabled>
-                <span className="home-match__game-art" aria-hidden>
-                  {g.art}
+              <article key={g.key}  aria-disabled>
+                <span  aria-hidden>
+                  {GAME_ICONS[g.icon] ? (
+                    <img src={GAME_ICONS[g.icon]} alt="" className="home-match__game-img" />
+                  ) : null}
                 </span>
-                <span className="home-match__game-title">{g.title}</span>
-                <span className="home-match__game-sub">{g.sub}</span>
+                 
               </article>
             )
           )}
@@ -184,11 +187,13 @@ export default function Home() {
           <div className="home-match__panel-pill">Recommended Games</div>
         </div>
         <div className="home-match__recommend-grid">
-          {RECOMMENDED_CARDS.map((g) => (
+          {RECOMMENDED_CARDS.map((g, i) => (
             <article key={g.key} className={`home-match__recommend-card home-match__recommend-card--${g.cls}`}>
               <span className="home-match__recommend-jili">JILI</span>
               <span className="home-match__recommend-art" aria-hidden>
-                {g.art}
+                {RECOMMEND_ICONS[i] ? (
+                  <img src={RECOMMEND_ICONS[i]} alt="" className="home-match__recommend-img" />
+                ) : null}
               </span>
               <span className="home-match__recommend-title">{g.title}</span>
             </article>

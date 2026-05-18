@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { GAME_ICONS } from "../assets/gameCatalog.js";
 import BottomNav from "../components/BottomNav.jsx";
 
 const ACT_ICONS = [
@@ -16,6 +17,15 @@ const GAMES = [
     tagline: "Color & number · live rounds",
     to: "/game/wingo",
     className: "act-jai__game-banner--wingo",
+    icon: "wingo",
+  },
+  {
+    slug: "aviator",
+    title: "Aviator",
+    tagline: "Crash · cash out in time",
+    to: "/game/aviator",
+    className: "act-jai__game-banner--aviator",
+    icon: "aviator",
   },
 ];
 
@@ -82,7 +92,11 @@ export default function Activity() {
         <div className="act-jai__game-list">
           {GAMES.map((g) => (
             <Link key={g.slug} to={g.to} className={`act-jai__game-banner ${g.className}`}>
-              <div className="act-jai__game-banner__art" aria-hidden />
+              <div className="act-jai__game-banner__art" aria-hidden>
+                {GAME_ICONS[g.icon] ? (
+                  <img src={GAME_ICONS[g.icon]} alt="" className="act-jai__game-banner__img" />
+                ) : null}
+              </div>
               <div className="act-jai__game-banner__text">
                 <span className="act-jai__game-banner__tag">{g.tagline}</span>
                 <span className="act-jai__game-banner__title">{g.title}</span>
