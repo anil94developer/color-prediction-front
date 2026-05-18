@@ -7,21 +7,20 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "render:build": "npm ci && npm run build"
+    "postinstall": "node scripts/render-build.mjs",
+    "render:build": "npm install && npm run build"
   },
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
     "axios": "^1.7.9",
     "qrcode": "^1.5.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
-    "socket.io-client": "^4.8.1"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.4",
+    "socket.io-client": "^4.8.1",
     "vite": "^6.0.3"
   }
 }
