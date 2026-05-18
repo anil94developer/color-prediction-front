@@ -1,0 +1,11 @@
+# Render static site — https://render.com/docs/static-sites
+services:
+  - type: web
+    name: color-prediction-front
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
