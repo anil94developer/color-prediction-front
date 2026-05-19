@@ -280,6 +280,10 @@ export default function Wallet() {
           <span>Recharge instructions</span>
         </div>
         <ul className="wallet-rc-rules">
+        <li>
+            <span className="wallet-rc-rules__bullet" aria-hidden />
+            First Deposit Amount should be 2000.
+          </li>
           <li>
             <span className="wallet-rc-rules__bullet" aria-hidden />
             Scan the QR on the next screen; amount on UPI must match your order.
