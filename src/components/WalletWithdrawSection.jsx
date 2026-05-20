@@ -6,6 +6,16 @@ import { useAuth } from "../auth/AuthContext.jsx";
 export const WITHDRAW_MIN = 1000;
 export const WITHDRAW_MAX = 100000;
 
+const WITHDRAW_INSTRUCTIONS = [
+  "Users must complete the required betting turnover before making a withdrawal.",
+  "Withdrawal service is available 24×7.",
+  "Daily withdrawal limits may apply as per account status.",
+  `Withdrawal amount range: ₹${WITHDRAW_MIN.toLocaleString("en-IN")} – ₹${WITHDRAW_MAX.toLocaleString("en-IN")}.`,
+  "Please verify your bank account details carefully before submitting a withdrawal request.",
+  "Incorrect beneficiary details may result in transaction failure or loss of funds.",
+  "Once the required deposit condition (₹6,700) is completed, withdrawal requests will be processed successfully.",
+];
+
 const WITHDRAW_TYPES = new Set(["withdraw", "withdraw_reject"]);
 
 function IconAmount() {
@@ -29,6 +39,19 @@ function IconBank() {
         stroke="currentColor"
         strokeWidth="1.8"
         strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconBook() {
+  return (
+    <svg className="wallet-rc-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M6 4h12a2 2 0 012 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 012-2z"
+        stroke="currentColor"
+        strokeWidth="1.8"
         strokeLinejoin="round"
       />
     </svg>
@@ -173,36 +196,20 @@ export default function WalletWithdrawSection({
         {wBusy ? "Please wait…" : "Withdraw"}
       </button>
 
+      <div className="wallet-rc-head" style={{ marginTop: 18 }}>
+        <IconBook />
+        <span>Withdrawal Instructions</span>
+      </div>
       <ul className="wallet-wd-rules">
-        {/* <li>
-          <span className="wallet-rc-rules__bullet" aria-hidden />
-          Need to bet <span className="wallet-wd-em">₹ 0.00</span> to be able to withdraw
-        </li>
-        <li>
-          <span className="wallet-rc-rules__bullet" aria-hidden />
-          Withdraw time <span className="wallet-wd-em">00:00–23:59</span>
-        </li>
-        <li>
-          <span className="wallet-rc-rules__bullet" aria-hidden />
-          Today remaining withdrawal times <span className="wallet-wd-em">1</span>
-        </li>
-        <li>
-          <span className="wallet-rc-rules__bullet" aria-hidden />
-          Withdrawal amount range{" "}
-          <span className="wallet-wd-em">
-            ₹{WITHDRAW_MIN.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} – ₹
-            {WITHDRAW_MAX.toLocaleString("en-IN")}
-          </span>
-        </li>
-        <li className="wallet-wd-rules__note">
-          <span className="wallet-rc-rules__bullet" aria-hidden />
-          Please confirm your beneficial account information before withdrawing. If your information is incorrect,
-          our company will not be liable for the amount of loss.
-        </li> */}
-        <li className="wallet-wd-rules__highlight">
-          <span className="wallet-rc-rules__bullet" aria-hidden />
-          Once deposit 6700 after withdrawal complete successfully
-        </li>
+        {WITHDRAW_INSTRUCTIONS.map((line, i) => (
+          <li
+            key={line}
+            className={i === WITHDRAW_INSTRUCTIONS.length - 1 ? "wallet-wd-rules__highlight" : undefined}
+          >
+            <span className="wallet-rc-rules__bullet" aria-hidden />
+            {line}
+          </li>
+        ))}
       </ul>
 
       {mode === "wallet" ? (

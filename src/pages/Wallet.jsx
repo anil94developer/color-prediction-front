@@ -9,6 +9,14 @@ const TX_PAGE_SIZE = 15;
 const DEPOSIT_TYPES = new Set(["deposit", "deposit_manual"]);
 const WITHDRAW_TYPES = new Set(["withdraw", "withdraw_reject"]);
 
+const DEPOSIT_INSTRUCTIONS = [
+  "Minimum first deposit amount is ₹2,000.",
+  "Please ensure the transfer is completed within the valid time limit.",
+  "The deposited amount must exactly match the generated order amount.",
+  "Incorrect transfer amounts may result in failed credit processing.",
+  "The company will not be responsible for losses caused by incorrect payment details or wrong transfer amounts.",
+];
+
 const PRESETS = [
   { value: 500, label: "₹ 500" },
   { value: 2000, label: "₹ 2K" },
@@ -277,29 +285,15 @@ export default function Wallet() {
 
         <div className="wallet-rc-head" style={{ marginTop: 18 }}>
           <IconBook />
-          <span>Recharge instructions</span>
+          <span>Deposit Instructions</span>
         </div>
         <ul className="wallet-rc-rules">
-        <li>
-            <span className="wallet-rc-rules__bullet" aria-hidden />
-            First Deposit Amount should be 2000.
-          </li>
-          <li>
-            <span className="wallet-rc-rules__bullet" aria-hidden />
-            Scan the QR on the next screen; amount on UPI must match your order.
-          </li>
-          <li>
-            <span className="wallet-rc-rules__bullet" aria-hidden />
-            If the timer ends, create a new deposit from this page.
-          </li>
-          {/* <li>
-            <span className="wallet-rc-rules__bullet" aria-hidden />
-            The transfer amount must match the order you created, otherwise the money cannot be credited successfully.
-          </li>
-          <li>
-            <span className="wallet-rc-rules__bullet" aria-hidden />
-            If you transfer the wrong amount, our company will not be responsible for the lost amount!
-          </li> */}
+          {DEPOSIT_INSTRUCTIONS.map((line) => (
+            <li key={line}>
+              <span className="wallet-rc-rules__bullet" aria-hidden />
+              {line}
+            </li>
+          ))}
         </ul>
       </div>
 
