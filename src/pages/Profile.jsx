@@ -17,6 +17,11 @@ export default function Profile() {
   const [upi, setUpi] = useState("");
   const [bank, setBank] = useState({ accountName: "", accountNumber: "", ifsc: "" });
   const [refs, setRefs] = useState(null);
+  const [supportContacts, setSupportContacts] = useState({
+    callNumber: "",
+    whatsappNumber: "",
+    telegramUrl: "",
+  });
   const [msg, setMsg] = useState("");
   const [copyHint, setCopyHint] = useState("");
   const [uidCopy, setUidCopy] = useState("");
@@ -33,6 +38,13 @@ export default function Profile() {
     api
       .get("/user/referrals")
       .then(({ data }) => setRefs(data))
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    api
+      .get("/support/contacts")
+      .then(({ data }) => setSupportContacts(data || {}))
       .catch(() => {});
   }, []);
 
@@ -84,6 +96,12 @@ export default function Profile() {
     user?.createdAt != null
       ? new Date(user.createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })
       : null;
+
+  const callHref = supportContacts.callNumber
+    ? `tel:${String(supportContacts.callNumber).replace(/\s+/g, "")}`
+    : "";
+  const waDigits = String(supportContacts.whatsappNumber || "").replace(/[^\d]/g, "");
+  const waHref = waDigits ? `https://wa.me/${waDigits}` : "";
 
   const notifs = Array.isArray(user?.notifications) ? user.notifications.slice(0, 6) : [];
 
@@ -224,7 +242,7 @@ export default function Profile() {
           { cap: "Settings", ico: "⚙", href: "#profile-account" },
           { cap: "Feedback", ico: "✎", href: "mailto:support@example.com" },
           { cap: "Announcement", ico: "📣", href: "#profile-notifs" },
-          { cap: "Customer service", ico: "💬", href: "#profile-account" },
+          { cap: "Help & Contact", ico: "💬", href: "#profile-help" },
           { cap: "Beginner's guide", ico: "?", href: "/" },
           { cap: "About us", ico: "i", href: "#profile-account" },
         ].map((s) => (
@@ -233,6 +251,50 @@ export default function Profile() {
             <span className="prof-svc-item__cap">{s.cap}</span>
           </a>
         ))}
+      </div>
+
+      <div className="card profile-card" id="profile-help">
+        <h2 className="profile-card__title">Help &amp; Contact</h2>
+        <p className="profile-card__hint">For support, use call/WhatsApp/Telegram.</p>
+
+        <div className="profile-readonly-grid">
+          <div>
+            <span className="profile-readonly__label">Call</span>
+            <span className="profile-readonly__value">
+              {callHref ? (
+                <a href={callHref} className="link">
+                  {supportContacts.callNumber}
+                </a>
+              ) : (
+                "—"
+              )}
+            </span>
+          </div>
+          <div>
+            <span className="profile-readonly__label">WhatsApp</span>
+            <span className="profile-readonly__value">
+              {waHref ? (
+                <a href={waHref} target="_blank" rel="noreferrer" className="link">
+                  {supportContacts.whatsappNumber}
+                </a>
+              ) : (
+                "—"
+              )}
+            </span>
+          </div>
+          <div>
+            <span className="profile-readonly__label">Telegram</span>
+            <span className="profile-readonly__value">
+              {supportContacts.telegramUrl ? (
+                <a href={supportContacts.telegramUrl} target="_blank" rel="noreferrer" className="link">
+                  Open
+                </a>
+              ) : (
+                "—"
+              )}
+            </span>
+          </div>
+        </div>
       </div>
 
       <div className="card profile-card" id="profile-account">

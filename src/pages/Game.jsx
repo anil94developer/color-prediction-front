@@ -48,6 +48,7 @@ export default function Game() {
   const { user, refreshMe } = useAuth();
   const [gameMode, setGameMode] = useState("WinGo_30S");
   const [round, setRound] = useState(null);
+  const [nextPrediction, setNextPrediction] = useState(null);
   const [serverOffset, setServerOffset] = useState(0);
   const [tick, setTick] = useState(0);
   const [stripResults, setStripResults] = useState([]);
@@ -219,7 +220,16 @@ export default function Game() {
       auth: { token },
     });
 
-    socket.emit("game:subscribe", { gameMode }, () => {});
+    socket.emit("game:subscribe", { gameMode }, (subRes) => {
+      const n = subRes?.nextPrediction?.nextNumber;
+      setNextPrediction(typeof n === "number" ? n : null);
+    });
+
+    socket.on("game:nextPrediction", (payload) => {
+      if (payload?.gameMode !== gameMode) return;
+      const n = payload?.nextNumber;
+      setNextPrediction(typeof n === "number" ? n : null);
+    });
 
     socket.on("game:round", (payload) => {
       if (payload.gameMode !== gameMode) return;
@@ -420,6 +430,10 @@ export default function Game() {
                   <NumberImage value={h.number} />
                 </div>
               ))}
+            </div>
+            <div className="next-prediction">
+              Next prediction :{" "}
+              <strong>{nextPrediction == null ? "Not set" : String(nextPrediction)}</strong>
             </div>
           </div>
           <div className="timer-box">

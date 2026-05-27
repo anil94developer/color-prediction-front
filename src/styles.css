@@ -711,6 +711,19 @@ a {
   word-break: break-all;
 }
 
+.next-prediction {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.next-prediction strong {
+  font-family: var(--font-display);
+  color: var(--accent-cyan);
+  font-size: 1.1rem;
+}
+
 .result-strip {
   display: flex;
   gap: 8px;
@@ -4702,7 +4715,6 @@ td {
   display: block;
   width: 100%;
   height: auto;
-  vertical-align: top;
   user-select: none;
   pointer-events: none;
   -webkit-user-drag: none;
